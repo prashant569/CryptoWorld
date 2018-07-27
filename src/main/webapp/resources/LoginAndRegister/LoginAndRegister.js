@@ -86,6 +86,8 @@ $(function() {
 			        type: "POST",
 			        async: false, //block until we get a response
 			        data: { username : $("#register-form #username").val() },
+			        username: $("#register-form #username").val(),
+			        password: $("#register-form #password").val(),
 			        success: function(error) {
 			            if (error) {
 			                $("#register-message")[0].innerHTML = error;

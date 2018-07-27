@@ -6,23 +6,25 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cryptocurrency List</title>
+<title>CoinMarketCap</title>
 
 
 <spring:url value="../resources/DataTables/datatables.css" var="datatablesCssUrl"/>
 <spring:url value="../resources/DataTables/datatables.js" var="datatablesJsUrl"/>
 <spring:url value="../resources/jquery-ui.js" var="jqueryUiJsUrl"/>
-<spring:url value="../resources/cryptocurrencyList/cryptocurrencyList.js" var="cryptocurrencyListJsUrl"/>
-<spring:url value="../resources/cryptocurrencyList/cryptocurrencyList.css" var="cryptocurrencyListCssUrl"/>
+<spring:url value="../resources/coinMarketCap.js" var="coinMarketCapJsUrl"/>
+<spring:url value="../resources/coinMarketCap.css" var="coinMarketCapCssUrl"/>
+<spring:url value="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js" var="KnockoutJsUrl"></spring:url>
+
 
 <%@ include file="commonFiles.jsp" %>
 
 <link href="${datatablesCssUrl}" rel="stylesheet">
-<link href="${cryptocurrencyListCssUrl}" rel="stylesheet">
+<link href="${coinMarketCapCssUrl}" rel="stylesheet">
 <script type="text/javascript" src="${jqueryUiJsUrl}"></script>
-<script type="text/javascript" src="${cryptocurrencyListJsUrl}"></script>
+<script type="text/javascript" src="${coinMarketCapJsUrl}"></script>
 <script type="text/javascript" src="${datatablesJsUrl}"></script>
-
+<script src="${KnockoutJsUrl}"></script>
 
 
 </head>
@@ -44,21 +46,21 @@
 		</tr>	
 	</thead>
 	
-	<tbody>
+	<tbody data-bind="foreach: coinMarketCapFullData">
 
-		<c:forEach items="${coinMarketCapFullData.data}" var="entry">
+		<%-- <c:forEach items="${coinMarketCapFullData.data}" var="entry"> --%>
 			
 			<tr>
-				<td>${entry.value.id}</td>
-				<td>${entry.value.name}</td>
-				<td>${entry.value.quotes.USD.market_cap}</td>
-				<td>${entry.value.quotes.USD.price }</td>
-				<td>${entry.value.quotes.USD.volume_24h}</td>
-				<td>${entry.value.circulating_supply}</td>
-				<td>${entry.value.quotes.USD.percent_change_24h}</td>
+				<td data-bind="text: rank"></td>
+				<td data-bind="text: name"></td>
+				<td data-bind="text: market_cap"></td>
+				<td data-bind="text: price"></td>
+				<td data-bind="text: volume_24h"></td>
+				<td data-bind="text: circulating_supply"></td>
+				<td data-bind="text: percent_change_24h"></td>
 			</tr>
 				
-		</c:forEach>
+	<%-- 	</c:forEach> --%>
 		
 	</tbody>
 

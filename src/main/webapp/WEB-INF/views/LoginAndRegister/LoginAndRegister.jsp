@@ -23,11 +23,13 @@
 <spring:url value="/" var="userLoginUrl"></spring:url>
 <spring:url value = "/registerUser" var="userRegisterUrl" />
 
+
 <%@ include file="../commonFiles.jsp" %>
 
 <link href="${loginAndRegisterCssUrl}" rel="stylesheet"/>
 <script src="${loginAndRegisterJsUrl}"></script>
-    
+
+ 
 
 </head>
 <body>

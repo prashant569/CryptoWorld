@@ -1,4 +1,4 @@
-package com.springsecurity;
+package com.cryptoworld;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringSecurityExampleApplicationTests {
+public class CryptoWorldApplicationTests {
 
 	@Test
 	public void contextLoads() {

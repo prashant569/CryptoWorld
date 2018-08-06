@@ -13,9 +13,9 @@ public class CryptoWorldApplication extends SpringBootServletInitializer {
 		SpringApplication.run(CryptoWorldApplication.class, args);
 	}
 	
-	
+/*	
 	   @Override
 	    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 	        return application.sources(CryptoWorldApplication.class);
-	    }
+	    }*/
 }

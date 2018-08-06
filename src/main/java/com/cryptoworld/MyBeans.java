@@ -22,7 +22,6 @@ public class MyBeans {
     	return new MongoTemplate(mongoDbFactory());
     }
 
-
     @Bean
     public InternalResourceViewResolver jspViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();

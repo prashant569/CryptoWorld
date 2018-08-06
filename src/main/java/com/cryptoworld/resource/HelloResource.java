@@ -6,18 +6,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/rest/hello")
+@RequestMapping("/rest/")
 public class HelloResource {
 
 	@GetMapping("/all")
 	public String hello() {
-		return "This resouce is exposed to any kind of user";
+		return new String("Hello user");
 	}
 	
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	@GetMapping("/secured/all")
-	public String securedHello() {
-		return "This is a secured resource. It is only accessible to admins.";
+	@GetMapping("/admin")
+	public String helloAdmin() {
+		return "Hello Admin";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/authenticated")
+	public String helloAuthenticatedUser() {
+		return "Hello authenticated user";
 	}
 	
 }

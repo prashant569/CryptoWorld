@@ -8,15 +8,22 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cryptoworld.model.UserProfile;
@@ -38,9 +45,8 @@ public class LoginAndRegisterController {
 	@Autowired
 	CoinMarketCapService coinMarketCapService;
 	
-	@RequestMapping("/")
-	public ModelAndView loginForm(@RequestParam Optional<String> error, Principal principal) {
-
+	@RequestMapping(value="/")
+	public ModelAndView loginForm(@RequestParam Optional<String> error,Principal principal) {
 		ModelAndView mv = new ModelAndView();	
 		
 		if(principal==null) {
@@ -57,33 +63,14 @@ public class LoginAndRegisterController {
 			mv.setViewName("redirect:/home");
 		}
 		
-		
 		return mv;
 	}
-	
-	
-	/*@RequestMapping("/home")
-	public String homePage(@RequestParam Optional<String> error,Principal principal) throws Exception {
-
-		if(principal==null)
-			throw new Exception("Principal cannot be null at home page : User is not logged in.");
-		
-		UserProfile userProfile = (UserProfile)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		ModelAndView mv = new ModelAndView();	
-		//mv.addObject("name", userProfile.getFirstName() + " " + userProfile.getLastName());
-		
-		return "redirect:/cryptocurrency/coinmarketcap";	
-		
-	}*/
 	
 	@GetMapping("/home")
 	public ModelAndView list(Principal principal) throws Exception { 
 		
 		if(principal==null)
 			throw new Exception("Principal cannot be null at home page : User is not logged in.");
-		
-		UserProfile userProfile = (UserProfile)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		ModelAndView mv = new ModelAndView("home");
 		
